@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Books Homepage - Welcome to My Book Store</title>
+    <style type="text/css">
+            body {
+                width: 800px;
+                margin: auto;
+            }
+        </style>
+</head>
+<body>
+<header>
+    <h1>Welcome to My Book Store</h1>
+</header>
+<main>
+    <h2>Choose book:</h2>
+    <form th:action="@{/selectBook}" method="post">
+        <div th:each="book : ${books}">
+            <label>
+                <input type="radio" name="selectedIsbn" th:value="${book.isbn}" th:text="${book.title}" th:field="*{selectedIsbn}" />
+                <span th:text="${book.year}"></span>
+                <span th:text="${book.genre}"></span>
+            </label>
+        </div>
+        <input type="submit" value="Submit" />
+    </form>
+</main>
+</body>
+</html>
+</html>
