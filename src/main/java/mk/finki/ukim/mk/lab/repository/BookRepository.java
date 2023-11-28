@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class BookRepository {
-    List<Book> books;
+    private List<Book> books;
 
     public BookRepository(){
         books = new ArrayList<>();
@@ -43,5 +43,9 @@ public class BookRepository {
 
     public void addAuthorToBook(Author author, Book book){
         book.addAuthor(author);
+    }
+
+    public void save(Book book) {
+        this.books.add(book);
     }
 }

@@ -43,4 +43,9 @@ public class IBookService implements BookService {
     public Book findBookByIsbn(String isbn) {
         return bookRepository.findByIsbn(isbn);
     }
+
+    @Override
+    public void save(Book book) {
+        bookRepository.save(book);
+    }
 }

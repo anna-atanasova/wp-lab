@@ -14,12 +14,13 @@ import java.util.List;
 
 @Controller
 public class BookListServlet {
-
     private final BookService bookService;
 
     public BookListServlet(BookService bookService) {
         this.bookService = bookService;
     }
+
+    private Book book;
 
     @GetMapping("/listBooks")
     public String listBooks(Model model)
@@ -35,5 +36,18 @@ public class BookListServlet {
         Book selectedBook = bookService.findBookByIsbn(selectedBookIsbn);
         redirectAttributes.addFlashAttribute("selectedBookIsbn", selectedBookIsbn);
         return "redirect:/authorList";
+    }
+
+    @GetMapping("books/add")
+    public String listSaveBookForm(Model model) {
+        book = new Book("", "", "", 0, new ArrayList<Author>());
+        model.addAttribute("book", book);
+        return "addBook";
+    }
+
+    @PostMapping("/processNewBook")
+    public String saveBook(@ModelAttribute("book") Book book, Model model) {
+        bookService.save(book);
+        return "redirect:/listBooks";
     }
 }

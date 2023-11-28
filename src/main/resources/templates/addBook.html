@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<h1>Add book</h1>
+
+<form th:action="@{/processNewBook}" method="post" th:object="${book}">
+    <p>ISBN</p>
+    <input type="text" th:field="*{isbn}">
+
+    <p>Title</p>
+    <input type="text" th:field="*{title}">
+
+    <p>Genre</p>
+    <input type="text" th:field="*{genre}">
+
+    <p>Year</p>
+    <input type="text" th:field="*{year}">
+
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
