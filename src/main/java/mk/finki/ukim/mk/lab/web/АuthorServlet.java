@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -22,8 +23,14 @@ public class АuthorServlet {
     }
 
     @GetMapping("/authorList")
-    public String listAuthors(@RequestParam("selectedBook") String isbn, Model model) {
-        Book book = bookService.findBookByIsbn(isbn);
-        return "";
+    public String listAuthors(Model model, RedirectAttributes redirectAttributes) {
+        String selectedBookIsbn = (String)model.getAttribute("selectedBookIsbn");
+
+        var authors = authorService.listAuthors();
+        var book = bookService.findBookByIsbn(selectedBookIsbn);
+        model.addAttribute("authors", authors);
+        model.addAttribute("book", book);
+
+        return "authorList";
     }
 }

@@ -6,6 +6,7 @@ import mk.finki.ukim.mk.lab.service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.spring6.dialect.SpringStandardDialect;
 
 import java.util.ArrayList;
@@ -30,8 +31,9 @@ public class BookListServlet {
     }
 
     @PostMapping("/processSelectedBook")
-    public String processSelectedBook(@RequestParam("selectedBook") String selectedBookIsbn, Model model) {
+    public String processSelectedBook(@RequestParam("selectedBook") String selectedBookIsbn, RedirectAttributes redirectAttributes) {
         Book selectedBook = bookService.findBookByIsbn(selectedBookIsbn);
-        return "redirect:/listBooks";
+        redirectAttributes.addFlashAttribute("selectedBookIsbn", selectedBookIsbn);
+        return "redirect:/authorList";
     }
 }
