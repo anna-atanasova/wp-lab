@@ -56,4 +56,11 @@ public class BookListServlet {
         bookService.delete(isbn);
         return "redirect:/listBooks";
     }
+
+    @PostMapping("/editBook")
+    public String editBook(@RequestParam(value="edit") String isbn, Model model) {
+        book = bookService.findBookByIsbn(isbn);
+        model.addAttribute("book", book);
+        return "addBook";
+    }
 }

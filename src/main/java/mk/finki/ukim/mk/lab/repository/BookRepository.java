@@ -46,7 +46,17 @@ public class BookRepository {
     }
 
     public void save(Book book) {
-        this.books.add(book);
+        var foundBook = findByIsbn(book.getIsbn());
+
+        if (foundBook == null) {
+            this.books.add(book);
+            return;
+        }
+
+        foundBook.setIsbn(book.getIsbn());
+        foundBook.setTitle(book.getTitle());
+        foundBook.setGenre(book.getGenre());
+        foundBook.setYear(book.getYear());
     }
 
     public void delete(String isbn) {

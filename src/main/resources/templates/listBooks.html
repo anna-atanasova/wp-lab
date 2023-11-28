@@ -2,7 +2,6 @@
 <body>
     <h1>Welcome to my book store</h1>
 
-    <form th:action="@{/processSelectedBook}" method="post">
         <div th:each="book: ${books}">
             <span>Title: </span>
             <span th:text="${book.title}"></span>
@@ -16,15 +15,23 @@
             <span th:text="${book.year}"></span>
             <span>&nbsp;</span>
 
-            <button>Edit</button>
+            <form th:action="@{/editBook}" method="post" style="display: inline;">
+                <button type="submit" th:name="edit" th:value="${book.isbn}">Edit</button>
+            </form>
 
             <form th:action="@{/deleteBook}" method="post" style="display: inline;">
                 <button type="submit" th:name="delete" th:value="${book.isbn}">Delete</button>
             </form>
 
-            <input type="radio" th:name="selectedBook" th:value="${book.isbn}" />
-        </div>
+            <form th:action="@{/processSelectedBook}" method="post">
+                <input type="radio" th:name="selectedBook" th:value="${book.isbn}" />
+                <button type="submit">Submit</button>
+            </form>
 
-        <button type="submit">Submit</button>
+        </div>
     </form>
+
+    <div>
+        <a th:href="@{books/add}">Add</a>
+    </div>
 </body>
