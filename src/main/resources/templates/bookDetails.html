@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<h1>Select the author to add to the book</h1>
+
+<h2>Book you selected: <span th:text="${book.title}"></span></h2>
+<div th:text="${book.genre}"></div>
+<div th:text="${book.year}"></div>
+
+<h2>Authors for selected book:</h2>
+  <div th:each="author: ${authors}">
+    <span>Name: </span>
+    <span th:text="${author.name}"></span>
+    <span>&nbsp;</span>
+
+    <span>Surname: </span>
+    <span th:text="${author.surname}"></span>
+    <span>&nbsp;</span>
+
+    <span>Bio: </span>
+    <span th:text="${author.biography}"></span>
+    <span>&nbsp;</span>
+  </div>
+</body>
+</html>

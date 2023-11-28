@@ -3,5 +3,25 @@
 <h1>Select the author to add to the book</h1>
 
 <h2>Book you selected: <span th:text="${book.title}"></span></h2>
+
+<form th:action="@{/processSelectedAuthor}" method="post">
+    <div th:each="author: ${authors}">
+        <span>Name: </span>
+        <span th:text="${author.name}"></span>
+        <span>&nbsp;</span>
+
+        <span>Surname: </span>
+        <span th:text="${author.surname}"></span>
+        <span>&nbsp;</span>
+
+        <span>Bio: </span>
+        <span th:text="${author.biography}"></span>
+        <span>&nbsp;</span>
+
+        <input type="radio" th:name="selectedAuthor" th:value="${author.id}" />
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>
