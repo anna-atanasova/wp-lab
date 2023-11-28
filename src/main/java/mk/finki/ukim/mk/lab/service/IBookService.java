@@ -48,4 +48,9 @@ public class IBookService implements BookService {
     public void save(Book book) {
         bookRepository.save(book);
     }
+
+    @Override
+    public void delete(String isbn) {
+        bookRepository.delete(isbn);
+    }
 }

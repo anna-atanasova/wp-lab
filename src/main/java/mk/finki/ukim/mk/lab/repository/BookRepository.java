@@ -48,4 +48,8 @@ public class BookRepository {
     public void save(Book book) {
         this.books.add(book);
     }
+
+    public void delete(String isbn) {
+        books.removeIf(book -> book.getIsbn().equals(isbn));
+    }
 }

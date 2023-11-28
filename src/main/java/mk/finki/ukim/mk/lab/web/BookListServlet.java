@@ -50,4 +50,10 @@ public class BookListServlet {
         bookService.save(book);
         return "redirect:/listBooks";
     }
+
+    @PostMapping("/deleteBook")
+    public String deleteBook(@RequestParam(value = "delete") String isbn) {
+        bookService.delete(isbn);
+        return "redirect:/listBooks";
+    }
 }

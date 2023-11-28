@@ -17,11 +17,14 @@
             <span>&nbsp;</span>
 
             <button>Edit</button>
-            <button>Delete</button>
+
+            <form th:action="@{/deleteBook}" method="post" style="display: inline;">
+                <button type="submit" th:name="delete" th:value="${book.isbn}">Delete</button>
+            </form>
+
             <input type="radio" th:name="selectedBook" th:value="${book.isbn}" />
         </div>
 
         <button type="submit">Submit</button>
     </form>
 </body>
-</html>

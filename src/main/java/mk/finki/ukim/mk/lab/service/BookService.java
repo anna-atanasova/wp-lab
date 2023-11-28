@@ -10,4 +10,5 @@ public interface BookService {
     Author addAuthorToBook(Long authorId, String isbn);
     Book findBookByIsbn(String isbn);
     void save(Book book);
+    void delete(String isbn);
 }
