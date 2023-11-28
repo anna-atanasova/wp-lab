@@ -57,6 +57,7 @@ public class BookRepository {
         foundBook.setTitle(book.getTitle());
         foundBook.setGenre(book.getGenre());
         foundBook.setYear(book.getYear());
+        foundBook.setBookStoreId(book.getBookStoreId());
     }
 
     public void delete(String isbn) {

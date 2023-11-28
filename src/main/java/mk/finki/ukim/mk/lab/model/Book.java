@@ -12,7 +12,7 @@ public class Book {
     private String genre;
     private int year;
     private List<Author> authors;
-    private BookStore bookStore;
+    private Long bookStoreId;
 
     public Book(String isbn, String title, String genre, int year, List<Author> authors) {
         this.id = (long) (Math.random() * 1000);

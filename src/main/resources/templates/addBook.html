@@ -15,7 +15,13 @@
     <p>Year</p>
     <input type="text" th:field="*{year}">
 
-    <button type="submit">Submit</button>
+
+        <p>Bookstore</p>
+        <select th:field="*{bookStoreId}" id="bookStoreId" name="bookStoreId">
+            <option th:each="store : ${bookStores}" th:value="${store.id}" th:text="${store.name}"></option>
+        </select>
+
+        <button type="submit">Submit</button>
 </form>
 </body>
 </html>

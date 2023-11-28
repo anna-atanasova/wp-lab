@@ -3,21 +3,22 @@ package mk.finki.ukim.mk.lab.web;
 import mk.finki.ukim.mk.lab.model.Author;
 import mk.finki.ukim.mk.lab.model.Book;
 import mk.finki.ukim.mk.lab.service.BookService;
+import mk.finki.ukim.mk.lab.service.BookStoreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.thymeleaf.spring6.dialect.SpringStandardDialect;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class BookListServlet {
     private final BookService bookService;
+    private final BookStoreService bookStoreService;
 
-    public BookListServlet(BookService bookService) {
+    public BookListServlet(BookService bookService, BookStoreService bookStoreService) {
         this.bookService = bookService;
+        this.bookStoreService = bookStoreService;
     }
 
     private Book book;
@@ -42,6 +43,8 @@ public class BookListServlet {
     public String listSaveBookForm(Model model) {
         book = new Book("", "", "", 0, new ArrayList<Author>());
         model.addAttribute("book", book);
+        var bookStores = bookStoreService.findAll();
+        model.addAttribute("bookStores", bookStores);
         return "addBook";
     }
 
@@ -61,6 +64,8 @@ public class BookListServlet {
     public String editBook(@RequestParam(value="edit") String isbn, Model model) {
         book = bookService.findBookByIsbn(isbn);
         model.addAttribute("book", book);
+        var bookStores = bookStoreService.findAll();
+        model.addAttribute("bookStores", bookStores);
         return "addBook";
     }
 }

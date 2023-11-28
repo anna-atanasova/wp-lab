@@ -20,7 +20,7 @@ public class IBookStoreService implements BookStoreService {
         var books = bookRepository.findAll();
         var bookStores = bookStoreRepository.findAll();
         for (int i = 0; i < books.size() && i < bookStores.size(); ++i) {
-            books.get(i).setBookStore(bookStores.get(i));
+            books.get(i).setBookStoreId(bookStores.get(i).getId());
         }
     }
 
